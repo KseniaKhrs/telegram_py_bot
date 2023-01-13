@@ -17,6 +17,7 @@ def start_bot(message):
 @bot.message_handler(content_types=['text'])
 def start1_bot(message):
     res = requests.get('https://www.cbr-xml-daily.ru/daily_json.js').json()
-    bot.send_message (message.chat.id, (str((res['Valute']["USD"]['Name'],res['Valute']["USD"]['Value']))))
+    result = res['Valute']["USD"]['Value']
+    bot.send_message (message.chat.id, f'{result} RUB')
 
 bot.infinity_polling()
